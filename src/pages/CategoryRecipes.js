@@ -24,6 +24,8 @@ const CategoryRecipes = () => {
   }, [categoryName]);
 
   const handleAddToCart = (recipe) => {
+      console.log("Sending to Redux:", recipe); // 🧪
+
     dispatch(
       addToCart({
         id: recipe.id,
