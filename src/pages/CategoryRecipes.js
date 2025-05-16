@@ -1,12 +1,16 @@
+// src/pages/CategoryRecipes.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
 import { getRecipes } from "../services/recipeService";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 const CategoryRecipes = () => {
   const { categoryName } = useParams();
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +22,17 @@ const CategoryRecipes = () => {
 
     fetchData();
   }, [categoryName]);
+
+  const handleAddToCart = (recipe) => {
+    dispatch(
+      addToCart({
+        id: recipe.id,
+        name: recipe.name,
+        price: recipe.price,
+        imageUrl: recipe.imageUrl || "https://via.placeholder.com/300x200",
+      })
+    );
+  };
 
   return (
     <Container className="mt-4">
@@ -46,6 +61,13 @@ const CategoryRecipes = () => {
                     <br />
                     <strong>₹{rec.price}</strong>
                   </Card.Text>
+                  <Button
+                    variant="primary"
+                    className="w-100"
+                    onClick={() => handleAddToCart(rec)}
+                  >
+                    Add to Cart
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
