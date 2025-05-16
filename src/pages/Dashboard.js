@@ -1,8 +1,11 @@
 // src/pages/Dashboard.js
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
 import { getCategories } from "../services/categoryService";
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 
 const Dashboard = () => {
   const [categories, setCategories] = useState([]);
@@ -20,8 +23,16 @@ const Dashboard = () => {
   }, []);
 
   return (
+    <>
+      <Header />
+
     <Container className="mt-4">
-      <h2 className="text-center mb-4">Browse Categories</h2>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="text-center m-0">Browse Categories</h2>
+        <Button as={Link} to="/order-history" variant="outline-primary">
+          View Order History
+        </Button>
+      </div>
 
       {loading ? (
         <div className="d-flex justify-content-center">
@@ -38,7 +49,10 @@ const Dashboard = () => {
                 <Card className="h-100 shadow-sm">
                   <Card.Img
                     variant="top"
-                    src={cat.imageUrl || "https://via.placeholder.com/300x200.png?text=No+Image"}
+                    src={
+                      cat.imageUrl ||
+                      "https://via.placeholder.com/300x200.png?text=No+Image"
+                    }
                     style={{ height: "200px", objectFit: "cover" }}
                   />
                   <Card.Body>
@@ -51,6 +65,8 @@ const Dashboard = () => {
         </Row>
       )}
     </Container>
+     <Footer /> 
+    </>
   );
 };
 

@@ -10,6 +10,8 @@ import { Navigate } from "react-router-dom";
 import CategoryRecipes from "./pages/CategoryRecipes"; 
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import OrderConfirmation from "./pages/OrderConfirmation";
+import OrderHistory from "./pages/OrderHistory";
 
 
 
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/category/:categoryName" element={<CategoryRecipes />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/order-history" element={<OrderHistory />} />
 
         <Route
           path="/dashboard"

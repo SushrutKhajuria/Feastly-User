@@ -5,6 +5,9 @@ import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
 import { getRecipes } from "../services/recipeService";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 
 const CategoryRecipes = () => {
   const { categoryName } = useParams();
@@ -37,6 +40,9 @@ const CategoryRecipes = () => {
   };
 
   return (
+    <>
+    <Header />
+
     <Container className="mt-4">
       <h2 className="text-center mb-4">{categoryName} Recipes</h2>
 
@@ -77,6 +83,8 @@ const CategoryRecipes = () => {
         </Row>
       )}
     </Container>
+     <Footer /> 
+    </>
   );
 };
 

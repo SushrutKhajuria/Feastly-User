@@ -8,6 +8,9 @@ import {
 } from "../store/cartSlice";
 import { Container, Row, Col, Button, Card, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 
 
 const CartPage = () => {
@@ -22,6 +25,9 @@ const CartPage = () => {
   );
 
   return (
+    <>  
+      <Header />
+
     <Container className="mt-4">
       <h2 className="mb-4">Your Cart</h2>
 
@@ -91,6 +97,8 @@ const CartPage = () => {
         </Row>
       )}
     </Container>
+     <Footer /> 
+    </>
   );
 };
 

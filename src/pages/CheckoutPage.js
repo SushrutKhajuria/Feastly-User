@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { clearCart } from "../store/cartSlice";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { getAuth } from "firebase/auth";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -45,10 +47,15 @@ const userEmail = auth.currentUser?.email || "Guest";
     await addDoc(collection(db, "orders"), orderData);
 
     dispatch(clearCart());
-    navigate("/dashboard");
+    navigate("/order-confirmation");
+
   };
 
   return (
+    <>
+      <Header />
+
+
     <Container className="mt-4">
       <h2 className="mb-4">Checkout</h2>
       <Card className="p-4">
@@ -121,6 +128,8 @@ const userEmail = auth.currentUser?.email || "Guest";
         </Form>
       </Card>
     </Container>
+     <Footer /> 
+        </>
   );
 };
 
